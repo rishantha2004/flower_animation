@@ -1,17 +1,67 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto-moving Flowers with Love Animation</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+    }
+
+    .flower {
+        position: absolute;
+        background-color: #ff6b6b;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        animation: loveAnimation 3s linear infinite;
+    }
+
+    @keyframes loveAnimation {
+        0% {
+            transform: scale(1) rotate(0deg);
+        }
+        50% {
+            transform: scale(1.2) rotate(45deg);
+        }
+        100% {
+            transform: scale(1) rotate(0deg);
+        }
+    }
+</style>
 </head>
 <body>
- 
-        
-
     <h1 class="text">I Love you!</h1>
     <audio controls autoplay src="lost., Honeyfox, Pop Mage - Let Her Go (Magic Cover Release).mp3"></audio>
     <script src="index.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let body = document.querySelector('body');
+
+        function createFlower() {
+            let flower = document.createElement('div');
+            flower.classList.add('flower');
+
+            let x = Math.random() * window.innerWidth;
+            let y = Math.random() * window.innerHeight;
+
+            flower.style.left = x + "px";
+            flower.style.top = y + "px";
+
+            body.appendChild(flower);
+
+            setTimeout(function() {
+                flower.remove();
+            }, 3000);
+        }
+
+        setInterval(createFlower, 500); // Adjust the interval as needed
+    });
+</script>
 </body>
 </html>
